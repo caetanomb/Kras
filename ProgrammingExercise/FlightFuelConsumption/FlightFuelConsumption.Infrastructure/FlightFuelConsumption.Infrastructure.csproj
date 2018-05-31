@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\DataModel\" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FlightFuelConsumption.Core\FlightFuelConsumption.Core.csproj" />
   </ItemGroup>
 
 </Project>

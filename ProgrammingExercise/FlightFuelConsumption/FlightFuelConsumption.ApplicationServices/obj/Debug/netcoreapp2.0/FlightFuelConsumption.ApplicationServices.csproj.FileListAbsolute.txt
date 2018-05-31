@@ -1,0 +1,12 @@
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\bin\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.deps.json
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\bin\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\bin\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.pdb
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\bin\Debug\netcoreapp2.0\FlightFuelConsumption.Core.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\bin\Debug\netcoreapp2.0\FlightFuelConsumption.Core.pdb
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\obj\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.csprojAssemblyReference.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\obj\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.csproj.CoreCompileInputs.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\obj\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.AssemblyInfoInputs.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\obj\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.AssemblyInfo.cs
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\obj\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.csproj.CopyComplete
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\obj\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.ApplicationServices\obj\Debug\netcoreapp2.0\FlightFuelConsumption.ApplicationServices.pdb

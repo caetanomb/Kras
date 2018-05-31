@@ -6,4 +6,3 @@ E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption
 E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.AssemblyInfo.cs
 E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.dll
 E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.pdb
-E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.csprojAssemblyReference.cache

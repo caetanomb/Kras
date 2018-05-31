@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FlightFuelConsumption.Core.Entities
 {
-    public class Flight
+    public class Flight : BaseEntity
     {
         public Airport DepartureAirport { get; private set; }
         public Airport DestinationAirport { get; private set; }
