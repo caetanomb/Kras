@@ -1,0 +1,17 @@
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\obj\Debug\netcoreapp2.0\UnitTest.Domain.csprojAssemblyReference.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\obj\Debug\netcoreapp2.0\UnitTest.Domain.csproj.CoreCompileInputs.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\obj\Debug\netcoreapp2.0\UnitTest.Domain.AssemblyInfoInputs.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\obj\Debug\netcoreapp2.0\UnitTest.Domain.AssemblyInfo.cs
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\UnitTest.Domain.deps.json
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\UnitTest.Domain.runtimeconfig.json
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\UnitTest.Domain.runtimeconfig.dev.json
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\UnitTest.Domain.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\UnitTest.Domain.pdb
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\FlightFuelConsumption.Core.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\bin\Debug\netcoreapp2.0\FlightFuelConsumption.Core.pdb
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\obj\Debug\netcoreapp2.0\UnitTest.Domain.csproj.CopyComplete
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\obj\Debug\netcoreapp2.0\UnitTest.Domain.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\UnitTest.Domain\obj\Debug\netcoreapp2.0\UnitTest.Domain.pdb

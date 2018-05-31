@@ -1,0 +1,9 @@
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\bin\Debug\netcoreapp2.0\FlightFuelConsumption.Core.deps.json
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\bin\Debug\netcoreapp2.0\FlightFuelConsumption.Core.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\bin\Debug\netcoreapp2.0\FlightFuelConsumption.Core.pdb
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.csproj.CoreCompileInputs.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.AssemblyInfoInputs.cache
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.AssemblyInfo.cs
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.dll
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.pdb
+E:\Waes\Kras\Src\ProgrammingExercise\FlightFuelConsumption\FlightFuelConsumption.Core\obj\Debug\netcoreapp2.0\FlightFuelConsumption.Core.csprojAssemblyReference.cache
