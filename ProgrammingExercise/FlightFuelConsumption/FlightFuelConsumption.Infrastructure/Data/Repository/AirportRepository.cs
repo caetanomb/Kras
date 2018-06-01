@@ -19,9 +19,11 @@ namespace FlightFuelConsumption.Infrastructure.Data.Repository
 
         public Task<Airport> GetAsync(int airportId)
         {
-            var airPort = _appDbContext.Airports.FirstOrDefault();
+            var airPort = _appDbContext.Airports
+                .Where(a => a.Id == airportId)
+                .FirstOrDefault();
 
-            return Task.FromResult(new Airport(airPort.Id, airPort.Name, airPort.Latitude, airPort.Longitude));             
+            return Task.FromResult(new Airport(airPort.Id, airPort.Name, airPort.Latitude, airPort.Longitude));
         }
     }
 }

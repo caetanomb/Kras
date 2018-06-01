@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FlightFuelConsumption.ApplicationServices.CommandHandlers
 {
-    public class EnterFlightCommandHandler : IRequestHandler<EnterFlightCommand, bool>
+    public class EnterFlightCommandHandler : IRequestHandler<EnterFlightCommand, int>
     {
         private readonly IFlightRepository _flightRepository;
         private readonly IAirportRepository _airportRepository;
@@ -22,7 +22,7 @@ namespace FlightFuelConsumption.ApplicationServices.CommandHandlers
             _airportRepository = airportRepository;
         }
 
-        public async Task<bool> Handle(EnterFlightCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(EnterFlightCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace FlightFuelConsumption.ApplicationServices.CommandHandlers
 
                 var identity = await _flightRepository.EnterFlight(newFlight);
 
-                return (identity > 0 ? true : false);
+                return identity;
             }
             catch (ApplicationException ex)
             {

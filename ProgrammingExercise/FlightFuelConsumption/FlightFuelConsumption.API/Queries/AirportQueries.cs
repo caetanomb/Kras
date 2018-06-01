@@ -19,7 +19,7 @@ namespace FlightFuelConsumption.API.Queries
 
         public async Task<IEnumerable<AirportViewModel>> GetAirportsAsync()
         {
-            var result = await _appDbContext.Airports                
+            var result = await _appDbContext.Airports
                 .ToArrayAsync();
 
             return result.Select(a => new AirportViewModel()

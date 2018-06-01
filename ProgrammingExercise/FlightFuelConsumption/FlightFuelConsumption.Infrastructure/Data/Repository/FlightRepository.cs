@@ -19,6 +19,16 @@ namespace FlightFuelConsumption.Infrastructure.Data.Repository
             _appDbContext = appDbContext;
         }
 
+        public async Task Delete(int id)
+        {
+            FlightDataModel existingFlight =
+                await _appDbContext.Flights.Where(a => a.Id == id)
+                .FirstOrDefaultAsync();
+
+            _appDbContext.Entry(existingFlight).State = EntityState.Deleted;
+            await _appDbContext.SaveChangesAsync();
+        }
+
         public async Task<int> EnterFlight(Flight flight)
         {
             FlightDataModel newFlight = new FlightDataModel()
@@ -37,14 +47,38 @@ namespace FlightFuelConsumption.Infrastructure.Data.Repository
             return newFlight.Id;
         }
 
-        //private async Task<Flight> GetFlightAsync(int id)
-        //{
-        //    var flight = await _appDbContext.Flights
-        //                    .Where(a => a.Id == id)
-        //                    .Include(fli => fli.DepartureAirport)
-        //                    .Include(fli => fli.DestinationAirport).FirstOrDefaultAsync();
+        public async Task<Flight> GetFlight(int id)
+        {
+            var flight = await _appDbContext.Flights
+                            .Where(a => a.Id == id)
+                            .Include(fli => fli.DepartureAirport)
+                            .Include(fli => fli.DestinationAirport).FirstOrDefaultAsync();
 
-        //    return new Flight(new Airport(flight.DepartureAirport))
-        //}
+            if (flight == null)
+                return null;
+
+            return new Flight(flight.Id,
+                              new Airport(flight.DepartureAirport.Id, flight.DepartureAirport.Name, flight.DepartureAirport.Latitude, flight.DepartureAirport.Longitude),
+                              new Airport(flight.DestinationAirport.Id, flight.DestinationAirport.Name, flight.DestinationAirport.Latitude, flight.DestinationAirport.Longitude),
+                              flight.FlightTime,
+                              flight.TakeoffEffort);
+        }
+
+        public async Task UpdateFlight(int id, Flight flight)
+        {
+            FlightDataModel existingFlight =
+                await _appDbContext.Flights.Where(a => a.Id == id)
+                .FirstOrDefaultAsync();
+
+            existingFlight.DepartureAirportId = flight.DepartureAirport.Id;
+            existingFlight.DestinationAirportId = flight.DestinationAirport.Id;
+            existingFlight.Distance = flight.Distance;
+            existingFlight.FuelConsumption = flight.FuelConsumption;
+            existingFlight.FlightTime = flight.FlightTime;
+            existingFlight.TakeoffEffort = flight.TakeoffEffort;
+
+            _appDbContext.Entry(existingFlight).State = EntityState.Modified;
+            await _appDbContext.SaveChangesAsync();
+        }
     }
 }

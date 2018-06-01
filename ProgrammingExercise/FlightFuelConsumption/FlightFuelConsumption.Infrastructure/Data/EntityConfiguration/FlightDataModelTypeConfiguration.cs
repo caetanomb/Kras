@@ -25,7 +25,7 @@ namespace FlightFuelConsumption.Infrastructure.Data.EntityConfiguration
 
             builder.HasOne(a => a.DepartureAirport)
                 .WithMany(b => b.DepartureFlights)
-                .HasForeignKey(c => c.DepartureAirportId);               
+                .HasForeignKey(c => c.DepartureAirportId);
 
             builder.HasOne(a => a.DestinationAirport)
                 .WithMany(b => b.DestinationFlights)

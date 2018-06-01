@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+form.emp-form {
+  background-color: #dbdbdb;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+div.validation-error {
+  color: red;
+  text-align: center;
+}
+
+button:hover, a.btn:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0 0 2em 0;
+  padding: 0
+}
+
+  ul li {
+    display: inline;
+    margin-right: 30px;
+  }
+
+    ul li a {
+      font-size: 1.5em;
+    }
+
+a {
+  text-decoration: none;
+}

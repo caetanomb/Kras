@@ -7,6 +7,7 @@ namespace FlightFuelConsumption.API.ApiModels
 {
     public class EnterFlightViewModel
     {
+        public int? Id { get; set; }
         public int DepartureAirportId { get; set; }
         public int DestinationAirportId { get; set; }
         public double FlightTime { get; set; }

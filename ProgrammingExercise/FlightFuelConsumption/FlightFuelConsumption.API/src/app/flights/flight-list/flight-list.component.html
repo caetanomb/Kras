@@ -1,0 +1,36 @@
+<table class="table table-sm table-hover">
+<thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Departure Airport</th>
+      <th scope="col">Destination Airport</th>
+      <th scope="col">Flight Time (Hour)</th>
+      <th scope="col">Takeoff Effort (Liter)</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let fli of flightService.flightList">
+    <td scope="row">
+      {{fli.Id}}
+    </td>
+    <td>
+      {{fli.DepartureAirportName}}
+    </td>
+    <td>
+      {{fli.DestinationAirportName}}
+    </td>
+    <td>
+      {{fli.FlightTime}}
+    </td>
+    <td>
+      {{fli.TakeoffEffort}}
+    </td>
+    <td>
+      <a class="btn" (click)="showForEdit(fli)">
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
+      <a class="btn text-danger" (click)="onDelete(fli.Id)">
+        <i class="fa fa-trash-o"></i>
+      </a>
+    </td>
+  </tr>  
+</table>

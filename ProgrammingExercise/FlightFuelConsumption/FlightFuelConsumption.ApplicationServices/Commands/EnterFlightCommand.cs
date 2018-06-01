@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FlightFuelConsumption.ApplicationServices.Commands
 {
-    public class EnterFlightCommand : IRequest<bool>
+    public class EnterFlightCommand : IRequest<int>
     {
         public int DepartureAirportId { get; set; }
         public int DestinationAirportId { get; set; }

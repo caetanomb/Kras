@@ -26,7 +26,10 @@ namespace FlightFuelConsumption.API.Queries
 
             return result.Select(a => new FlightViewModel()
             {
+                Id = a.Id,
+                DepartureAirportId = a.DepartureAirportId ?? 0,
                 DepartureAirportName = a.DepartureAirport.Name,
+                DestinationAirportId = a.DestinationAirportId ?? 0,
                 DestinationAirportName = a.DestinationAirport.Name,
                 Distance = a.Distance,
                 FuelConsumption = a.FuelConsumption,
