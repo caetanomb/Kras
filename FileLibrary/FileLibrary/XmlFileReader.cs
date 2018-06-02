@@ -8,7 +8,9 @@ using System.Xml;
 namespace FileLibrary
 {
     public class XmlFileReader : FileReader, IXmlFileReader
-    {        
+    {
+        private IDecryptDataService _decryptDataService;
+
         public XmlFileReader(string filePath, string fileName)
             : base(filePath, SetExtension(fileName))
         {
@@ -21,6 +23,28 @@ namespace FileLibrary
         public static string SetExtension(string fileName)
         {
             return Path.ChangeExtension(fileName, ".xml");
+        }
+
+        //Overload to avoid change breaking
+        /// <summary>
+        /// Use this constructor passing in IDecryptDataService implementation otherwise the Read method 
+        /// returns raw data
+        /// </summary>
+        /// <param name="filePath">File Path</param>
+        /// <param name="fileName">File Name</param>
+        /// <param name="decryptDataService">Decrypt Data Service</param>
+        public XmlFileReader(string filePath, string fileName, IDecryptDataService decryptDataService)
+            : base(filePath, SetExtension(fileName))
+        {
+            _decryptDataService = decryptDataService;
+        }        
+
+        public new string Read()
+        {
+            if (_decryptDataService == null)
+                return base.Read().AsString();
+
+            return _decryptDataService.DecryptData(base.Read().AsString());
         }
     }
 }

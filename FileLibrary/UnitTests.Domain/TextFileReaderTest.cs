@@ -26,7 +26,7 @@ namespace UnitTests.Domain
         [Theory]
         [InlineData("Context")]
         [InlineData("Context.txt")]
-        public void Make_Sure_File_Has_TextFile_Entension(string fileName)
+        public void Make_Sure_File_Has_TextFile_Extension(string fileName)
         {
             string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";            
 

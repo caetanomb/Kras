@@ -26,7 +26,7 @@ namespace FileLibrary
                 return string.Empty;
             
             //Access xml content in order to validate root node attribute
-            string xmlContent = base.Read().AsString();
+            string xmlContent = base.Read();
 
             //If user was passed the first validation and is Admin then return content
             if (role.Equals("Admin", StringComparison.CurrentCultureIgnoreCase))

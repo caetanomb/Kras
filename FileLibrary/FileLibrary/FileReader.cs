@@ -37,7 +37,7 @@ namespace FileLibrary
                 string line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    stringBuilder.Append(line);
+                    stringBuilder.Append(line.Trim());
                 }
 
                 return new FileResultDto() { Content = stringBuilder };

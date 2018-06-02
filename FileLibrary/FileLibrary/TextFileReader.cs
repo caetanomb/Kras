@@ -15,6 +15,13 @@ namespace FileLibrary
         }
 
         //Overload to avoid change breaking
+        /// <summary>
+        /// Use this constructor passing in IDecryptDataService implementation otherwise the Read method 
+        /// returns raw data
+        /// </summary>
+        /// <param name="filePath">File Path</param>
+        /// <param name="fileName">File Name</param>
+        /// <param name="decryptDataService">Decrypt Data Service</param>
         public TextFileReader(string filePath, string fileName, IDecryptDataService decryptDataService)
             : base(filePath, SetExtension(fileName))
         {
