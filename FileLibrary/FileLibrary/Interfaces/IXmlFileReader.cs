@@ -5,6 +5,6 @@ using System.Text;
 namespace FileLibrary.Interfaces
 {
     public interface IXmlFileReader
-    {
+    {        
     }
 }

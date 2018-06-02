@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml;
 
 namespace FileLibrary
 {
     public class XmlFileReader : FileReader, IXmlFileReader
-    {
+    {        
         public XmlFileReader(string filePath, string fileName)
             : base(filePath, SetExtension(fileName))
         {
-        }
-
+        }        
         /// <summary>
         /// Sets .xml extension whether file does not have an extension or has a different extension
         /// </summary>

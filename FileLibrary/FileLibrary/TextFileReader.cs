@@ -31,12 +31,12 @@ namespace FileLibrary
             return Path.ChangeExtension(fileName, ".txt");
         }
 
-        public override string Read()
+        public new string Read()
         {
             if (_decryptDataService == null)
-                return base.Read();
+                return base.Read().AsString();
 
-            return _decryptDataService.DecryptData(base.Read());
+            return _decryptDataService.DecryptData(base.Read().AsString());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FileLibrary.Interfaces;
+﻿using FileLibrary.Dto;
+using FileLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,7 +28,7 @@ namespace FileLibrary
             }
         }
 
-        public virtual string Read()
+        public virtual IFileResult Read()
         {
             using (FileStream fs = File.Open(FullPath, FileMode.Open, FileAccess.Read))
             using (StreamReader sr = new StreamReader(fs))
@@ -39,7 +40,7 @@ namespace FileLibrary
                     stringBuilder.Append(line);
                 }
 
-                return stringBuilder.ToString();
+                return new FileResultDto() { Content = stringBuilder };
             };
         }
     }

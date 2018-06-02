@@ -7,7 +7,7 @@ namespace FileLibrary
 {
     public static class DecryptExtensionService
     {
-        public static string ReadAndDecrypt(this IFileReader fileReader)
+        public static string ReadAndDecrypt(this ITextFileReader fileReader)
         {
             StringBuilder stringBuilder =
                 new StringBuilder(fileReader.Read());

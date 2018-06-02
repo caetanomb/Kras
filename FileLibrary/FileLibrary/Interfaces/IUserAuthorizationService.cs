@@ -4,8 +4,8 @@ using System.Text;
 
 namespace FileLibrary.Interfaces
 {
-    public interface IFileReader
+    public interface IUserAuthorizationService
     {
-        IFileResult Read();
+        bool AuthorizeUser(string role);
     }
 }

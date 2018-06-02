@@ -6,5 +6,6 @@ namespace FileLibrary.Interfaces
 {
     public interface ITextFileReader
     {
+        string Read();
     }
 }

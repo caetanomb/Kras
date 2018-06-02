@@ -1,7 +1,4 @@
 ﻿using FileLibrary;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace UnitTests.Domain
@@ -16,7 +13,7 @@ namespace UnitTests.Domain
             string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
 
             var textFileReader = new XmlFileReader(filePath, fileName);
-            string contentFile = textFileReader.Read();
+            string contentFile = textFileReader.Read().AsString();
 
             Assert.Equal("<note><to>Tove</to><from>Jani</from></note>", contentFile);
         }
@@ -31,6 +28,6 @@ namespace UnitTests.Domain
             var textFileReader = new XmlFileReader(filePath, fileName);
 
             Assert.Equal("ContentXML.xml", textFileReader.Filename);
-        }
+        }        
     }
 }
