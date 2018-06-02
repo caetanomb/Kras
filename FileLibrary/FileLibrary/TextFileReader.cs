@@ -6,20 +6,37 @@ using System.Text;
 namespace FileLibrary
 {
     public class TextFileReader : FileReader, ITextFileReader
-    {                        
+    {
+        private IDecryptDataService _decryptDataService;
+
         public TextFileReader(string filePath, string fileName)
             : base(filePath, SetExtension(fileName))
         {                        
         }
 
+        //Overload to avoid change breaking
+        public TextFileReader(string filePath, string fileName, IDecryptDataService decryptDataService)
+            : base(filePath, SetExtension(fileName))
+        {
+            _decryptDataService = decryptDataService;
+        }
+
         /// <summary>
-        /// Sets .xml extension whether file does not have an extension or has a different extension
+        /// Sets .txt extension whether file does not have an extension or has a different extension
         /// </summary>
         /// <param name="fileName">File Name</param>
         /// <returns></returns>
         public static string SetExtension(string fileName)
         {
             return Path.ChangeExtension(fileName, ".txt");
+        }
+
+        public override string Read()
+        {
+            if (_decryptDataService == null)
+                return base.Read();
+
+            return _decryptDataService.DecryptData(base.Read());
         }
     }
 }
