@@ -6,5 +6,6 @@ namespace FileLibrary.Interfaces
 {
     public interface IJsonFileReader
     {
+        string Read();
     }
 }

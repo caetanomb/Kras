@@ -7,10 +7,26 @@ using System.Text;
 namespace FileLibrary
 {
     public class JsonFileReader : FileReader, IJsonFileReader
-    {        
+    {
+        private IDecryptDataService _decryptDataService;
+
         public JsonFileReader(string filePath, string fileName)
             : base(filePath, SetExtension(fileName))
         {
+        }
+
+        //Overload to avoid change breaking
+        /// <summary>
+        /// Use this constructor passing in IDecryptDataService implementation otherwise the Read method 
+        /// returns raw data
+        /// </summary>
+        /// <param name="filePath">File Path</param>
+        /// <param name="fileName">File Name</param>
+        /// <param name="decryptDataService">Decrypt Data Service</param>
+        public JsonFileReader(string filePath, string fileName, IDecryptDataService decryptDataService)
+            : base(filePath, SetExtension(fileName))
+        {
+            _decryptDataService = decryptDataService;
         }
 
         /// <summary>
@@ -25,7 +41,10 @@ namespace FileLibrary
 
         public new string Read()
         {
-            return base.Read().AsString();            
+            if (_decryptDataService == null)
+                return base.Read().AsString();
+
+            return _decryptDataService.DecryptData(base.Read().AsString());
         }
     }
 }
