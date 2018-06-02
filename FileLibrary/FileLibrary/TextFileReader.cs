@@ -7,8 +7,14 @@ namespace FileLibrary
 {
     public class TextFileReader : IFileReader
     {
+        private string _fileName;
+
         public string FilePath { get; private set; }
-        public string Filename { get; private set; }
+        public string Filename
+        {
+            get => Path.ChangeExtension(_fileName, ".txt");            
+            private set => _fileName = value;            
+        }
         public string FullPath => Path.Combine(FilePath, Filename);
 
         public TextFileReader(string filePath, string fileName)
