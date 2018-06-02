@@ -1,0 +1,8 @@
+﻿{
+  "Role": "Employee",
+  "title": "Person",
+  "type": "object",
+  "lastName": {
+    "type": "string"
+  }
+}

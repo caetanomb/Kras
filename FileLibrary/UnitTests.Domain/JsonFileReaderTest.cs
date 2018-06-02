@@ -1,8 +1,11 @@
 ﻿using FileLibrary;
 using FileLibrary.Interfaces;
 using Moq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -48,13 +51,16 @@ namespace UnitTests.Domain
                 .Setup(mock => mock.DecryptData(It.IsAny<string>()))
                 .Returns((string param) =>
                 {
-                    StringBuilder stringBuilder =
-                        new StringBuilder(param);
+                    string content = Encoding.UTF8.GetString(Convert.FromBase64String(param));
+                    string[] splittedContent = content.Split("\r\n");
 
-                    char[] array = stringBuilder.ToString().ToCharArray();
-                    Array.Reverse(array);
+                    content = string.Empty;
+                    foreach (var item in splittedContent)
+                    {
+                        content += item.Trim();
+                    }
 
-                    return new string(array);
+                    return content;
                 });
 
             var jsonFileReader = new JsonFileReader(filePath, fileName, mockDecryptService.Object);

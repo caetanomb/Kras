@@ -9,14 +9,16 @@ namespace FileLibrary
     {
         public static string ReadAndDecrypt(this IJsonFileReader fileReader)
         {
-            StringBuilder stringBuilder =
-                new StringBuilder(fileReader.Read());
+            string content = Encoding.UTF8.GetString(Convert.FromBase64String(fileReader.Read()));
+            string[] splittedContent = content.Split("\r\n");
 
-            //Array.Reverse is working as expected for Json files
-            //char[] array = stringBuilder.ToString().ToCharArray();
-            //Array.Reverse(array);
-            
-            return stringBuilder.ToString();
+            content = string.Empty;
+            foreach (var item in splittedContent)
+            {
+                content += item.Trim();
+            }
+
+            return content;
         }
     }
 }
