@@ -35,12 +35,16 @@ namespace FileLibrary
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 string line;
+                string header = string.Empty;
                 while ((line = sr.ReadLine()) != null)
                 {
+                    if (string.IsNullOrEmpty(header))                    
+                        header = line.Trim();                    
+                    
                     stringBuilder.Append(line.Trim());
                 }
 
-                return new FileResultDto() { Content = stringBuilder };
+                return new FileResultDto() { Content = stringBuilder, Header = header };
             };
         }
     }

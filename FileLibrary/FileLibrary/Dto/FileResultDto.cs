@@ -7,6 +7,7 @@ namespace FileLibrary.Dto
 {
     public class FileResultDto : IFileResult
     {
+        public string Header { get; set; }
         public StringBuilder Content { get; set; }
-    }
+    }    
 }

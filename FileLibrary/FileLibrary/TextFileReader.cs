@@ -45,5 +45,10 @@ namespace FileLibrary
 
             return _decryptDataService.DecryptData(base.Read().AsString());
         }
+
+        protected IFileResult ReadFromBase()
+        {
+            return base.Read();
+        }
     }
 }

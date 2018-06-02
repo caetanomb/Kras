@@ -2,16 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml;
 
 namespace FileLibrary
 {
-    public class XmlFileReaderRoleBased : XmlFileReader, IXmlFileReaderRoleBased
+    public class TextFileReaderRoleBased : TextFileReader, ITextFileReaderRoleBased
     {
         private readonly IUserAuthorizationService _userAuthorizationService;
         private readonly IFileRoleValidationService _fileRoleValidationService;
 
-        public XmlFileReaderRoleBased(string filePath, string fileName, IUserAuthorizationService userAuthorizationService,
+        public TextFileReaderRoleBased(string filePath, string fileName, IUserAuthorizationService userAuthorizationService,
             IFileRoleValidationService fileRoleValidationService)
             : base(filePath, SetExtension(fileName))
         {
@@ -24,36 +23,39 @@ namespace FileLibrary
             //Check if User claims such role
             if (!_userAuthorizationService.AuthorizeUser(role))
                 return string.Empty;
-            
-            //Access xml content in order to validate root node attribute
-            string xmlContent = base.Read();
 
-            if (string.IsNullOrEmpty(xmlContent))
+            //Access text content in order to validate the header row
+            IFileResult fileResult = base.ReadFromBase();
+            string textContent = fileResult.AsString();
+            string headerLine = fileResult.Header;
+            string fileRole = string.Empty;
+
+            if (string.IsNullOrEmpty(textContent))
                 return string.Empty;
 
             //If user passed the first validation and is Admin then return content
             if (role.Equals("Admin", StringComparison.CurrentCultureIgnoreCase))
-                return xmlContent;
+                return textContent.ToString();
 
-            //read XML
-            XmlDocument document = new XmlDocument();
-            document.LoadXml(xmlContent);
-
-            //Get root node
-            XmlElement rootNode = document.DocumentElement;
-
-            //Get role attribute
-            string xmlCurrentRole = rootNode.GetAttribute("role");
+            if (headerLine.Contains("Role="))
+            {
+                string[] aux = headerLine.Split('|');
+                if (aux.Length >= 1)
+                {
+                    fileRole = aux[0];
+                    fileRole = fileRole.Replace("Role=", string.Empty);
+                }
+            }
 
             //Check role attribute is not empty or null
-            if (string.IsNullOrEmpty(xmlCurrentRole))
+            if (string.IsNullOrEmpty(fileRole))
                 return string.Empty;
 
             //Authorize File read per Role
-            if (!_fileRoleValidationService.Validate(xmlCurrentRole, role))
+            if (!_fileRoleValidationService.Validate(fileRole, role))
                 return string.Empty;
 
-            return xmlContent;
+            return textContent;
         }
     }
 }

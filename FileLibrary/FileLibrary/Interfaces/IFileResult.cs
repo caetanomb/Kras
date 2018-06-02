@@ -6,6 +6,7 @@ namespace FileLibrary.Interfaces
 {
     public interface IFileResult
     {
+        string Header { get; set; }
         StringBuilder Content { get; set; }        
     }    
 }
