@@ -1,15 +1,16 @@
 ﻿using FileLibrary.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 namespace FileLibrary
 {
-    public class TextFileReader : FileReader, ITextFileReader
-    {                        
-        public TextFileReader(string filePath, string fileName)
+    public class XmlFileReader : FileReader, IXmlFileReader
+    {
+        public XmlFileReader(string filePath, string fileName)
             : base(filePath, SetExtension(fileName))
-        {                        
+        {
         }
 
         /// <summary>
@@ -19,7 +20,7 @@ namespace FileLibrary
         /// <returns></returns>
         public static string SetExtension(string fileName)
         {
-            return Path.ChangeExtension(fileName, ".txt");
+            return Path.ChangeExtension(fileName, ".xml");
         }
     }
 }

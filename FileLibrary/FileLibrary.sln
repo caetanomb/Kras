@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLibrary", "FileLibrary\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.Domain", "UnitTests.Domain\UnitTests.Domain.csproj", "{41FE2748-E698-4C14-8FE1-EE998CE35899}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9385A951-AE0C-415B-9568-897A73A6CF3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{325B3510-714A-4AA7-A540-DEEAB357589A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLibraryCLI", "FileLibraryCLI\FileLibraryCLI.csproj", "{532505F1-9E26-4AE5-B03A-85903AC0B74D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +27,17 @@ Global
 		{41FE2748-E698-4C14-8FE1-EE998CE35899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41FE2748-E698-4C14-8FE1-EE998CE35899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41FE2748-E698-4C14-8FE1-EE998CE35899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{532505F1-9E26-4AE5-B03A-85903AC0B74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{532505F1-9E26-4AE5-B03A-85903AC0B74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{532505F1-9E26-4AE5-B03A-85903AC0B74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{532505F1-9E26-4AE5-B03A-85903AC0B74D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33AD2594-3F71-42C8-87C9-DE83F9F027A1} = {9385A951-AE0C-415B-9568-897A73A6CF3C}
+		{41FE2748-E698-4C14-8FE1-EE998CE35899} = {325B3510-714A-4AA7-A540-DEEAB357589A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE3C51EC-339F-4BF4-9062-29C32E548403}
