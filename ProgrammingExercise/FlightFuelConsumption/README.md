@@ -20,5 +20,9 @@ A report page shows a summary of all entered data including the calculate data
  # How to run
  
  - Open Command Prompt
- - Access directory \FlightFuelConsumption.API from the root folder
+ - Access app root folder .\FlightFuelConsumption
+ - Execute tests - for Integration tests => dotnet test IntegrationTests | for unit tests => dotnet test UnitTest.Domain
+ - Access directory \FlightFuelConsumption.API
+ - Execute command ng build - this command build front-end project and publish it into wwwroot folder
  - Execute command dotnet run
+ - Open browser and access url http://localhost:53105/
