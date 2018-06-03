@@ -1,6 +1,6 @@
 # How would you rate the quality of the quality of the following piece of code? Can you provide an alternative?
 
-![alt tag](https://github.com/caetanomb/DataAuthority/blob/master/Solution%20Property.png)
+![alt tag](https://github.com/caetanomb/Kras/blob/master/CodeQuality/Code.PNG)
 
 
 ## I would rate this code as low maintainability and coupled which makes it hard to extend. You have to keep adding **IF** statements in order to support new bussiness rules.
