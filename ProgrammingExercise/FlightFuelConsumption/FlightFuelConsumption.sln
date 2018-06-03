@@ -13,9 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightFuelConsumption.Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightFuelConsumption.Infrastructure", "FlightFuelConsumption.Infrastructure\FlightFuelConsumption.Infrastructure.csproj", "{0353331C-BDA3-45D1-ADBD-DC0B1255D86A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightFuelConsumption.ApplicationServices", "FlightFuelConsumption.ApplicationServices\FlightFuelConsumption.ApplicationServices.csproj", "{5F432202-F524-4092-B37D-B49F755DA977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightFuelConsumption.ApplicationServices", "FlightFuelConsumption.ApplicationServices\FlightFuelConsumption.ApplicationServices.csproj", "{5F432202-F524-4092-B37D-B49F755DA977}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightFuelConsumption.API", "FlightFuelConsumption.API\FlightFuelConsumption.API.csproj", "{124F2D15-D653-4663-A4BF-75A75A351AFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightFuelConsumption.API", "FlightFuelConsumption.API\FlightFuelConsumption.API.csproj", "{124F2D15-D653-4663-A4BF-75A75A351AFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12467479-E3E3-40C5-B69B-F04BADF5929C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
