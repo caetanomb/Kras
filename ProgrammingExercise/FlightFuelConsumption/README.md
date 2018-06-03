@@ -7,9 +7,8 @@ Domain rule: Fuel consumption = (distance / flight time) + takeoff effort
 
 A report page shows a summary of all entered data including the calculate data
 
-# Details - Frameworks, Designs patterns
+# Details - Designs patterns
 
- - ASP.Net Web Api Core 2.0
  - Unit tests - Xunit.net
  - MediatR
  - CQRS - Command Query Responsibility Segregation
@@ -17,8 +16,18 @@ A report page shows a summary of all entered data including the calculate data
  - Domain Model
  - Dependency Injection
  
+ # Required frameworks and tools
+ - .Net Core 2.0
+ - Nodejs
+ - Visual Studio, preferably
+ 
  # How to run
  
+ - Download project or clone repo
  - Open Command Prompt
- - Access directory \FlightFuelConsumption.API from the root folder
+ - Access app root folder .\FlightFuelConsumption
+ - Execute tests - for Integration tests => dotnet test IntegrationTests | for unit tests => dotnet test UnitTest.Domain
+ - Access directory \FlightFuelConsumption.API
+ - Execute command ng build - this command build front-end project and publish it into wwwroot folder
  - Execute command dotnet run
+ - Open browser and access url http://localhost:53105/
