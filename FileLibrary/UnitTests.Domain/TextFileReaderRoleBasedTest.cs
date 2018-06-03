@@ -1,4 +1,5 @@
 ﻿using FileLibrary;
+using FileLibrary.Domain.Exception;
 using FileLibrary.Interfaces;
 using Moq;
 using System;
@@ -35,34 +36,40 @@ namespace UnitTests.Domain
 
         [Fact]
         public void User_Cannot_Read_TextFile_FileRole_Is_Employee_User_is_Visitor()
-        {            
-            string fileName = "ContentRoleBasedEmployee.txt"; //this file has role Employee
+        {
+            var exception = Assert.Throws<FileSecurityException>(() =>
+            {
+                string fileName = "ContentRoleBasedEmployee.txt"; //this file has role Employee
 
-            string[] pauloUserRoles = new string[] { "Visitor", "Employee" };
+                string[] pauloUserRoles = new string[] { "Visitor", "Employee" };
 
-            ConfigureMocks(pauloUserRoles);
+                ConfigureMocks(pauloUserRoles);
 
-            var textFileReaderRoleBased =
-                new TextFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = textFileReaderRoleBased.Read("Visitor");
+                var textFileReaderRoleBased =
+                    new TextFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
+                string contentFile = textFileReaderRoleBased.Read("Visitor");
+            });
 
-            Assert.Equal("", contentFile);
+            Assert.Contains("User can't read this file", exception.Message);
         }
 
         [Fact]
         public void User_Cannot_Read_TextFile_DoesNot_Have_Employee_Role()
-        {            
-            string fileName = "ContentRoleBasedEmployee.txt"; //this file has role Employee
+        {
+            var exception = Assert.Throws<FileSecurityException>(() =>
+            {
+                string fileName = "ContentRoleBasedEmployee.txt"; //this file has role Employee
 
-            string[] pauloUserRoles = new string[] { "Visitor" };
+                string[] pauloUserRoles = new string[] { "Visitor" };
 
-            ConfigureMocks(pauloUserRoles);
+                ConfigureMocks(pauloUserRoles);
 
-            var textFileReaderRoleBased =
-                new TextFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = textFileReaderRoleBased.Read("Employee");
+                var textFileReaderRoleBased =
+                    new TextFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
+                string contentFile = textFileReaderRoleBased.Read("Employee");
+            });
 
-            Assert.Equal("", contentFile);
+            Assert.Contains("User can't read this file", exception.Message);
         }
 
         [Fact]

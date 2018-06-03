@@ -1,4 +1,5 @@
 ﻿using FileLibrary;
+using FileLibrary.Domain.Exception;
 using FileLibrary.Interfaces;
 using Moq;
 using System;
@@ -34,34 +35,40 @@ namespace UnitTests.Domain
 
         [Fact]
         public void User_Cannot_Read_XmlFile_FileRole_Is_Employee_User_is_Visitor()
-        {            
-            string fileName = "ContentXMLRoleBasedEmployee.xml"; //this file has role Employee
+        {
+            var exception = Assert.Throws<FileSecurityException>(() =>
+            {
+                string fileName = "ContentXMLRoleBasedEmployee.xml"; //this file has role Employee
 
-            string[] pauloUserRoles = new string[] { "Visitor", "Employee"};
+                string[] pauloUserRoles = new string[] { "Visitor", "Employee" };
 
-            ConfigureMocks(pauloUserRoles);
+                ConfigureMocks(pauloUserRoles);
 
-            var xmlFileReaderRoleBased =
-                new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = xmlFileReaderRoleBased.Read("Visitor");
+                var xmlFileReaderRoleBased =
+                    new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
+                string contentFile = xmlFileReaderRoleBased.Read("Visitor");
+            });
 
-            Assert.Equal("", contentFile);
+            Assert.Contains("User can't read this file", exception.Message);
         }
 
         [Fact]
         public void User_Cannot_Read_XmlFile_DoesNot_Have_Employee_Role()
-        {            
-            string fileName = "ContentXMLRoleBasedEmployee.xml"; //this file has role Employee
+        {
+            var exception = Assert.Throws<FileSecurityException>(() =>
+            {
+                string fileName = "ContentXMLRoleBasedEmployee.xml"; //this file has role Employee
 
-            string[] pauloUserRoles = new string[] { "Visitor" };
+                string[] pauloUserRoles = new string[] { "Visitor" };
 
-            ConfigureMocks(pauloUserRoles);
+                ConfigureMocks(pauloUserRoles);
 
-            var xmlFileReaderRoleBased =
-                new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = xmlFileReaderRoleBased.Read("Employee");
+                var xmlFileReaderRoleBased =
+                    new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
+                string contentFile = xmlFileReaderRoleBased.Read("Employee");
+            });
 
-            Assert.Equal("", contentFile);
+            Assert.Contains("User can't read this file", exception.Message);
         }
 
         [Fact]
