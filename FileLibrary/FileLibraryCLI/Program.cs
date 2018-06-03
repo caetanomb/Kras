@@ -1,29 +1,20 @@
 ﻿using FileLibrary;
+using FileLibrary.Interfaces;
+using Moq;
 using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using static FileLibraryCLI.CLISystem;
 
 namespace FileLibraryCLI
 {
-    class Program
-    {
+    public class Program
+    {                        
         static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-            
-            try
-            {
-                XmlFileReader xmlFileReader =
-                new XmlFileReader(@"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain",
-                "ContentXML");
-
-                var te = xmlFileReader.Read();
-                Console.WriteLine(te);
-            }
-            catch (Exception ex)
-            {                
-                Console.WriteLine(ex.Message);
-            }
-            
-            Console.ReadLine();
+        {            
+            CLISystem cliSystem = new CLISystem();
+            cliSystem.ShowMainMenu();            
         }
     }
 }

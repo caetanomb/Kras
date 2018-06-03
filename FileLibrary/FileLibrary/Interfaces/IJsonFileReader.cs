@@ -4,8 +4,7 @@ using System.Text;
 
 namespace FileLibrary.Interfaces
 {
-    public interface IJsonFileReader
-    {
-        string Read();
+    public interface IJsonFileReader : IFileReader
+    {        
     }
 }

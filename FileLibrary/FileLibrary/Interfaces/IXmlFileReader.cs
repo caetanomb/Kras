@@ -4,8 +4,7 @@ using System.Text;
 
 namespace FileLibrary.Interfaces
 {
-    public interface IXmlFileReader
-    {
-        string Read();
+    public interface IXmlFileReader : IFileReader
+    {        
     }
 }

@@ -13,13 +13,13 @@ namespace UnitTests.Domain
 {
     public class JsonFileReaderTest
     {
+        string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\Files\Json";
+
         [Theory]
         [InlineData("ContentJson.json")]
         [InlineData("ContentJson")]
         public void A_User_Should_be_Able_to_Read_A_JsonFile(string fileName)
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-
+        {            
             var jsonFileReader = new JsonFileReader(filePath, fileName);
             string contentFile = jsonFileReader.Read();
 
@@ -30,9 +30,7 @@ namespace UnitTests.Domain
         [InlineData("ContentJson")]
         [InlineData("ContentJson.json")]
         public void Make_Sure_File_Has_TextFile_Extension(string fileName)
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-
+        {            
             var jsonFileReader = new JsonFileReader(filePath, fileName);
 
             Assert.Equal("ContentJson.json", jsonFileReader.Filename);
@@ -41,8 +39,7 @@ namespace UnitTests.Domain
         //This unit test customize the Decrypt algorithm using Dependency Injection
         [Fact]
         public void A_User_Should_be_Able_to_Read_An_Encrypted_TextFile_InjectingService()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
+        {            
             string fileName = "EncryptedContentJson.json";
 
             //Mock DecryptService Service
@@ -72,8 +69,7 @@ namespace UnitTests.Domain
         //This unit test customize the Decrypt algorithm using Extension Method
         [Fact]
         public void A_User_Should_be_Able_to_Read_An_Encrypted_TextFile_ExtensionMethod()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
+        {            
             string fileName = "EncryptedContentJson.json";
 
             var jsonFileReader = new JsonFileReader(filePath, fileName);

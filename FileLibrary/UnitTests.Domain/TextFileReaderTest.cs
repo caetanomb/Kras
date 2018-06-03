@@ -10,13 +10,13 @@ namespace UnitTests.Domain
 {
     public class TextFileReaderTest
     {
-        [Theory]
-        [InlineData("Context.txt")]
-        [InlineData("Context")]
-        public void A_User_Should_be_Able_to_Read_A_TextFile(string fileName)
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";            
+        string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\Files\Text";
 
+        [Theory]
+        [InlineData("Content.txt")]
+        [InlineData("Content")]
+        public void A_User_Should_be_Able_to_Read_A_TextFile(string fileName)
+        {            
             var textFileReader = new TextFileReader(filePath, fileName);
             string contentFile = textFileReader.Read();
 
@@ -24,23 +24,20 @@ namespace UnitTests.Domain
         }
 
         [Theory]
-        [InlineData("Context")]
-        [InlineData("Context.txt")]
+        [InlineData("Content")]
+        [InlineData("Content.txt")]
         public void Make_Sure_File_Has_TextFile_Extension(string fileName)
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";            
-
+        {                    
             var textFileReader = new TextFileReader(filePath, fileName);
 
-            Assert.Equal("Context.txt", textFileReader.Filename);
+            Assert.Equal("Content.txt", textFileReader.Filename);
         }
 
         //This unit test customize the Decrypt algorithm using Dependency Injection
         [Fact]
         public void A_User_Should_be_Able_to_Read_An_Encrypted_TextFile_InjectingService()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "EncryptedContext.txt";
+        {            
+            string fileName = "EncryptedContent.txt";
 
             //Mock DecryptService Service
             var mockDecryptService = new Mock<IDecryptDataService>();
@@ -66,9 +63,8 @@ namespace UnitTests.Domain
         //This unit test customize the Decrypt algorithm using Extension Method
         [Fact]
         public void A_User_Should_be_Able_to_Read_An_Encrypted_TextFile_ExtensionMethod()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "EncryptedContext.txt";
+        {            
+            string fileName = "EncryptedContent.txt";
             
             var textFileReader = new TextFileReader(filePath, fileName);
             string contentFile = textFileReader.ReadAndDecrypt();
@@ -78,14 +74,13 @@ namespace UnitTests.Domain
 
         [Fact]
         public void Error_WrongConstructor_Read_An_Encrypted_TextFile()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "EncryptedContext.txt";
+        {            
+            string fileName = "EncryptedContent.txt";
 
             var textFileReader = new TextFileReader(filePath, fileName);
             string contentFile = textFileReader.Read();
 
             Assert.NotEqual("This is the file content", contentFile);
-        }
+        }        
     }
 }

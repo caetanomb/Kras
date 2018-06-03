@@ -1,7 +1,9 @@
 ﻿using FileLibrary;
 using FileLibrary.Interfaces;
 using Moq;
+using System;
 using System.Linq;
+using System.Text;
 using Xunit;
 
 namespace UnitTests.Domain
@@ -9,13 +11,15 @@ namespace UnitTests.Domain
     public class XmlFileReaderRoleBasedTests
     {
         private Mock<IUserAuthorizationService> _mockUserAuthorizationService;
-        private Mock<IFileRoleValidationService> _mockFileRoleValidationService;        
+        private Mock<IFileRoleValidationService> _mockFileRoleValidationService;
+        private Mock<IDecryptDataService> _mockDecryptService;
+
+        string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\Files\Xml";
 
         [Fact]
         public void A_User_Should_Be_Able_To_Read_XmlFile_In_RoleBased_Security()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentXML2.xml";
+        {            
+            string fileName = "ContentXMLRoleBasedVisitor.xml";
 
             string[] pauloUserRoles = new string[] { "Visitor" };
 
@@ -23,16 +27,15 @@ namespace UnitTests.Domain
 
             var xmlFileReaderRoleBased =
                 new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = xmlFileReaderRoleBased.ReadBaseOnRole("Visitor");
+            string contentFile = xmlFileReaderRoleBased.Read("Visitor");
 
             Assert.Equal("<note role=\"Visitor\"><to>Tove</to><from>Jani</from></note>", contentFile);
         }
 
         [Fact]
         public void User_Cannot_Read_XmlFile_FileRole_Is_Employee_User_is_Visitor()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentXML3.xml"; //this file has role Employee
+        {            
+            string fileName = "ContentXMLRoleBasedEmployee.xml"; //this file has role Employee
 
             string[] pauloUserRoles = new string[] { "Visitor", "Employee"};
 
@@ -40,16 +43,15 @@ namespace UnitTests.Domain
 
             var xmlFileReaderRoleBased =
                 new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = xmlFileReaderRoleBased.ReadBaseOnRole("Visitor");
+            string contentFile = xmlFileReaderRoleBased.Read("Visitor");
 
             Assert.Equal("", contentFile);
         }
 
         [Fact]
-        public void User_Cannot_Read_XmlFile_DoesNot_Have_Is_Employee_Role()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentXML3.xml"; //this file has role Employee
+        public void User_Cannot_Read_XmlFile_DoesNot_Have_Employee_Role()
+        {            
+            string fileName = "ContentXMLRoleBasedEmployee.xml"; //this file has role Employee
 
             string[] pauloUserRoles = new string[] { "Visitor" };
 
@@ -57,16 +59,15 @@ namespace UnitTests.Domain
 
             var xmlFileReaderRoleBased =
                 new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = xmlFileReaderRoleBased.ReadBaseOnRole("Employee");
+            string contentFile = xmlFileReaderRoleBased.Read("Employee");
 
             Assert.Equal("", contentFile);
         }
 
         [Fact]
         public void User_Admin_Read_All_Files()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentXML3.xml"; //this file has role Employee
+        {            
+            string fileName = "ContentXMLRoleBasedEmployee.xml"; //this file has role Employee
 
             string[] pauloUserRoles = new string[] { "Admin" };
 
@@ -74,7 +75,25 @@ namespace UnitTests.Domain
 
             var xmlFileReaderRoleBased =
                 new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = xmlFileReaderRoleBased.ReadBaseOnRole("Admin");
+            string contentFile = xmlFileReaderRoleBased.Read("Admin");
+
+            Assert.Equal("<note role=\"Employee\"><to>Tove</to><from>Jani</from></note>", contentFile);
+        }
+
+        [Fact]
+        public void A_User_Should_Be_Able_To_Read_EncryptedXmlFile_In_RoleBased_Security()
+        {
+            string fileName = "EncryptedContentXMLRoleBasedEmployee.xml";
+
+            string[] pauloUserRoles = new string[] { "Employee" };
+
+            ConfigureMocks(pauloUserRoles);
+
+            var xmlFileReaderRoleBased =
+                new XmlFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, 
+                _mockFileRoleValidationService.Object, _mockDecryptService.Object);
+
+            string contentFile = xmlFileReaderRoleBased.Read("Employee");
 
             Assert.Equal("<note role=\"Employee\"><to>Tove</to><from>Jani</from></note>", contentFile);
         }
@@ -103,6 +122,21 @@ namespace UnitTests.Domain
                         return false; //User informed role does not match with file role
 
                     return true;
+                });
+
+            //Mock DecryptService Service
+            _mockDecryptService = new Mock<IDecryptDataService>();
+            _mockDecryptService
+                .Setup(mock => mock.DecryptData(It.IsAny<string>()))
+                .Returns((string param) =>
+                {
+                    StringBuilder stringBuilder =
+                        new StringBuilder(param);
+
+                    char[] array = stringBuilder.ToString().ToCharArray();
+                    Array.Reverse(array);
+
+                    return new string(array);
                 });
         }
     }

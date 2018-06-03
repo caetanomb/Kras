@@ -8,14 +8,14 @@ using Xunit;
 namespace UnitTests.Domain
 {
     public class XmlFileReaderTest
-    {        
+    {
+        string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\Files\Xml";
+
         [Theory]
         [InlineData("ContentXML")]
         [InlineData("ContentXML.xml")]
         public void A_User_Should_be_Able_to_Read_A_XmlFile(string fileName)
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-
+        {            
             var xmlFileReader = new XmlFileReader(filePath, fileName);
             string contentFile = xmlFileReader.Read();
 
@@ -26,9 +26,7 @@ namespace UnitTests.Domain
         [InlineData("ContentXML")]
         [InlineData("ContentXML.xml")]
         public void Make_Sure_File_Has_XmlFile_Entension(string fileName)
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-
+        {            
             var xmlFileReader = new XmlFileReader(filePath, fileName);
 
             Assert.Equal("ContentXML.xml", xmlFileReader.Filename);
@@ -37,8 +35,7 @@ namespace UnitTests.Domain
         //This unit test customize the Decrypt algorithm using Dependency Injection
         [Fact]
         public void A_User_Should_be_Able_to_Read_An_Encrypted_XmlFile_InjectingService()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
+        {            
             string fileName = "EncryptedContentXML.xml";
 
             //Mock DecryptService Service
@@ -65,8 +62,7 @@ namespace UnitTests.Domain
         //This unit test customize the Decrypt algorithm using Extension Method
         [Fact]
         public void A_User_Should_be_Able_to_Read_An_Encrypted_XmlFile_ExtensionMethod()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
+        {            
             string fileName = "EncryptedContentXML.xml";
 
             var xmlFileReader = new XmlFileReader(filePath, fileName);
@@ -77,8 +73,7 @@ namespace UnitTests.Domain
 
         [Fact]
         public void Error_WrongConstructor_Read_An_Encrypted_XmlFile()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
+        {            
             string fileName = "EncryptedContentXML.xml";
 
             var xmlFileReader = new XmlFileReader(filePath, fileName);

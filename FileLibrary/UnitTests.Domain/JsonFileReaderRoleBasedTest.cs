@@ -13,12 +13,14 @@ namespace UnitTests.Domain
     {
         private Mock<IUserAuthorizationService> _mockUserAuthorizationService;
         private Mock<IFileRoleValidationService> _mockFileRoleValidationService;
+        private Mock<IDecryptDataService> _mockDecryptService;
+
+        string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\Files\Json";
 
         [Fact]
-        public void A_User_Should_Be_Able_To_Read_TextFile_In_RoleBased_Security()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentJson2.json";
+        public void A_User_Should_Be_Able_To_Read_JsonFile_In_RoleBased_Security()
+        {            
+            string fileName = "ContentJsonRoleBasedVisitor.json";
 
             string[] pauloUserRoles = new string[] { "Visitor" };
 
@@ -26,16 +28,15 @@ namespace UnitTests.Domain
 
             var jsonFileReaderRoleBased =
                 new JsonFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = jsonFileReaderRoleBased.ReadBaseOnRole("Visitor");
+            string contentFile = jsonFileReaderRoleBased.Read("Visitor");
 
             Assert.Equal("{\"Role\": \"Visitor\",\"title\": \"Person\",\"type\": \"object\",\"lastName\": {\"type\": \"string\"}}", contentFile);
         }
 
         [Fact]
-        public void User_Cannot_Read_TextFile_FileRole_Is_Employee_User_is_Visitor()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentJson3.json"; //this file has role Employee
+        public void User_Cannot_Read_JsonFile_FileRole_Is_Employee_User_is_Visitor()
+        {            
+            string fileName = "ContentJsonRoleBasedEmployee.json"; //this file has role Employee
 
             string[] pauloUserRoles = new string[] { "Visitor", "Employee" };
 
@@ -43,16 +44,15 @@ namespace UnitTests.Domain
 
             var jsonFileReaderRoleBased =
                 new JsonFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = jsonFileReaderRoleBased.ReadBaseOnRole("Visitor");
+            string contentFile = jsonFileReaderRoleBased.Read("Visitor");
 
             Assert.Equal("", contentFile);
         }
 
         [Fact]
-        public void User_Cannot_Read_TextFile_DoesNot_Have_Is_Employee_Role()
-        {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentJson3.json"; //this file has role Employee
+        public void User_Cannot_Read_JsonFile_DoesNot_Have_Is_Employee_Role()
+        {            
+            string fileName = "ContentJsonRoleBasedEmployee.json"; //this file has role Employee
 
             string[] pauloUserRoles = new string[] { "Visitor" };
 
@@ -60,16 +60,33 @@ namespace UnitTests.Domain
 
             var jsonFileReaderRoleBased =
                 new JsonFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = jsonFileReaderRoleBased.ReadBaseOnRole("Employee");
+            string contentFile = jsonFileReaderRoleBased.Read("Employee");
 
             Assert.Equal("", contentFile);
         }
 
         [Fact]
-        public void User_Admin_Read_All_Files()
+        public void A_User_Should_Be_Able_To_Read_EncryptedJsonFile_In_RoleBased_Security()
         {
-            string filePath = @"E:\Waes\Kras\Src\FileLibrary\UnitTests.Domain\";
-            string fileName = "ContentJson3.json"; //this file has role Employee
+            string fileName = "EncryptedContentJsonRoleBasedEmployee.json";
+
+            string[] pauloUserRoles = new string[] { "Employee" };
+
+            ConfigureMocks(pauloUserRoles);
+
+            var jsonFileReaderRoleBased =
+                new JsonFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, 
+                _mockFileRoleValidationService.Object, _mockDecryptService.Object);
+
+            string contentFile = jsonFileReaderRoleBased.Read("Employee");
+
+            Assert.Equal("{\"Role\": \"Employee\",\"title\": \"Person\",\"type\": \"object\",\"lastName\": {\"type\": \"string\"}}", contentFile);
+        }
+
+        [Fact]
+        public void User_Admin_Read_All_Files()
+        {            
+            string fileName = "ContentJsonRoleBasedEmployee.json"; //this file has role Employee
 
             string[] pauloUserRoles = new string[] { "Admin" };
 
@@ -77,7 +94,7 @@ namespace UnitTests.Domain
 
             var jsonFileReaderRoleBased =
                 new JsonFileReaderRoleBased(filePath, fileName, _mockUserAuthorizationService.Object, _mockFileRoleValidationService.Object);
-            string contentFile = jsonFileReaderRoleBased.ReadBaseOnRole("Admin");
+            string contentFile = jsonFileReaderRoleBased.Read("Admin");
 
             Assert.Equal("{\"Role\": \"Employee\",\"title\": \"Person\",\"type\": \"object\",\"lastName\": {\"type\": \"string\"}}", contentFile);
         }
@@ -106,6 +123,24 @@ namespace UnitTests.Domain
                         return false; //User informed role does not match with file role
 
                     return true;
+                });
+
+            //Mock DecryptService Service
+            _mockDecryptService = new Mock<IDecryptDataService>();
+            _mockDecryptService
+                .Setup(mock => mock.DecryptData(It.IsAny<string>()))
+                .Returns((string param) =>
+                {
+                    string content = Encoding.UTF8.GetString(Convert.FromBase64String(param));
+                    string[] splittedContent = content.Split("\r\n");
+
+                    content = string.Empty;
+                    foreach (var item in splittedContent)
+                    {
+                        content += item.Trim();
+                    }
+
+                    return content;
                 });
         }
     }

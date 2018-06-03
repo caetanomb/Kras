@@ -38,17 +38,17 @@ namespace FileLibrary
             return Path.ChangeExtension(fileName, ".txt");
         }
 
-        public new string Read()
+        public string Read()
         {
             if (_decryptDataService == null)
-                return base.Read().AsString();
+                return base.ReadFile().AsString();
 
-            return _decryptDataService.DecryptData(base.Read().AsString());
+            return _decryptDataService.DecryptData(base.ReadFile().AsString());
         }
 
         protected IFileResult ReadFromBase()
         {
-            return base.Read();
+            return base.ReadFile();
         }
     }
 }

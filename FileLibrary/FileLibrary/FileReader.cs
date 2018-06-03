@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FileLibrary
 {
-    public class FileReader : IFileReader
+    public class FileReader : IFileReaderBase
     {
         public string FilePath { get; protected set; }
         public string Filename { get; protected set; }        
@@ -28,7 +28,7 @@ namespace FileLibrary
             }
         }
 
-        public virtual IFileResult Read()
+        public virtual IFileResult ReadFile()
         {
             using (FileStream fs = File.Open(FullPath, FileMode.Open, FileAccess.Read))
             using (StreamReader sr = new StreamReader(fs))

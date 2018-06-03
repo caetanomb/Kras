@@ -39,12 +39,17 @@ namespace FileLibrary
             return Path.ChangeExtension(fileName, ".json");
         }
 
-        public new string Read()
+        public string Read()
         {
             if (_decryptDataService == null)
-                return base.Read().AsString();
+                return base.ReadFile().AsString();
 
-            return _decryptDataService.DecryptData(base.Read().AsString());
+            return _decryptDataService.DecryptData(base.ReadFile().AsString());
+        }
+
+        protected IFileResult ReadFromBase()
+        {
+            return base.ReadFile();
         }
     }
 }

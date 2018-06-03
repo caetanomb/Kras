@@ -4,8 +4,8 @@ using System.Text;
 
 namespace FileLibrary.Interfaces
 {
-    public interface ITextFileReaderRoleBased
-    {
-        string ReadBaseOnRole(string role);
+    public interface IFileReaderBase
+    {        
+        IFileResult ReadFile();
     }
 }
