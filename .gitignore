@@ -3,3 +3,22 @@
 ################################################################################
 
 /ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.API/bin/Debug/netcoreapp2.0
+/ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.API/obj
+/ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.ApplicationServices/obj
+/ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.Core
+/ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.Infrastructure/bin/Debug/netcoreapp2.0
+/ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.Infrastructure/obj
+/ProgrammingExercise/FlightFuelConsumption/UnitTest.Domain/bin/Debug/netcoreapp2.0
+/ProgrammingExercise/FlightFuelConsumption/UnitTest.Domain/obj/Debug/netcoreapp2.0
+/ProgrammingExercise/FlightFuelConsumption/UnitTest.Domain/obj
+/ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.ApplicationServices/bin/Debug/netcoreapp2.0
+/FileLibrary/.vs/FileLibrary/v15
+/FileLibrary/FileLibrary/bin/Debug/netcoreapp2.0
+/FileLibrary/FileLibrary/obj
+/FileLibrary/UnitTests.Domain/bin/Debug/netcoreapp2.0
+/FileLibrary/UnitTests.Domain/obj
+/FileLibrary/FileLibraryCLI/bin/Debug/netcoreapp2.0
+/FileLibrary/FileLibraryCLI/obj
+/FileLibrary/.vs/FileLibrary/DesignTimeBuild
+/FileLibrary/.vs/config
+/ProgrammingExercise/FlightFuelConsumption/FlightFuelConsumption.API/wwwroot

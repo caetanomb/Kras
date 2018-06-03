@@ -20,47 +20,44 @@ using Newtonsoft.Json.Serialization;
 
 namespace FlightFuelConsumption.API
 {
-    public class Startup
+  public class Startup
+  {
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+      Configuration = configuration;
+    }
 
-        public IConfiguration Configuration { get; }
+    public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            //Configure Entity Context
-            services.AddDbContext<AppDbContext>(opt =>
-            {
-                opt.UseSqlServer(Configuration.GetConnectionString("AppDbContext"));
-            });
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+      //Configure Entity Context
+      ConfigureDatabase(services);
 
-            //Configure MediatR
-            services.AddMediatR(typeof(EnterFlightCommandHandler).Assembly);
+      //Configure MediatR
+      services.AddMediatR(typeof(EnterFlightCommandHandler).Assembly);
 
-            services.AddTransient<IFlightRepository, FlightRepository>();
-            services.AddTransient<IAirportRepository, AirportRepository>();
-            services.AddTransient<IFlightQueries, FlightQueries>();
-            services.AddTransient<IAirportQueries, AirportQueries>();
+      services.AddTransient<IFlightRepository, FlightRepository>();
+      services.AddTransient<IAirportRepository, AirportRepository>();
+      services.AddTransient<IFlightQueries, FlightQueries>();
+      services.AddTransient<IAirportQueries, AirportQueries>();
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .AllowCredentials();
-            }));
+      services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+      {
+        builder.AllowAnyOrigin()
+                     .AllowAnyMethod()
+                     .AllowAnyHeader()
+                     .AllowCredentials();
+      }));
+      
+      services.AddMvc()
+        .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()); ;
+    }
 
-            services.AddMvc()
-              .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()); ;
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
       //Redirect non api calls to angular app that will handle routing of the app.    
       app.Use(async (context, next) =>
       {
@@ -73,15 +70,29 @@ namespace FlightFuelConsumption.API
       });
 
       if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+      {
+        app.UseDeveloperExceptionPage();
+      }
 
-            app.UseCors("MyPolicy");
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+      app.UseCors("MyPolicy");
+      app.UseDefaultFiles();
+      app.UseStaticFiles();
 
-            app.UseMvc();
-        }
+      app.UseMvc();
+
+      using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+      {
+        var service = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();        
+        service.Database.Migrate();        
+      }
     }
+
+    public virtual void ConfigureDatabase(IServiceCollection services)
+    {
+      services.AddDbContext<AppDbContext>(opt =>
+      {
+        opt.UseSqlServer(Configuration.GetConnectionString("AppDbContext"));
+      });
+    }
+  }
 }
