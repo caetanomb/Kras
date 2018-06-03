@@ -19,7 +19,7 @@ A report page shows a summary of all entered data including the calculate data
  # Required frameworks and tools
  - .Net Core 2.0
  - Nodejs
- - Visual Studio Community, preferably
+ - Visual Studio, preferably
  
  # How to run
  
