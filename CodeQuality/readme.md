@@ -1,4 +1,4 @@
-# How would you rate the quality of the quality of the following piece of code? Can you provide an alternative?
+# How would you rate the quality of the following piece of code? Can you provide an alternative?
 
 ![alt tag](https://github.com/caetanomb/Kras/blob/master/CodeQuality/Code.PNG)
 
