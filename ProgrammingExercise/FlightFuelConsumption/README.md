@@ -31,3 +31,16 @@ A report page shows a summary of all entered data including the calculate data
  - Execute command ng build - this command build front-end project and publish it into wwwroot folder
  - Execute command dotnet run
  - Open browser and access url http://localhost:53105/
+ 
+ # Docker for testing purposes
+ 
+  - Install docker client
+  - Open Command Prompt
+  - Execute docker pull caetanomb/flightfuelconsumptionapi
+  - docker run -d -p "8000:80" caetanomb/flightfuelconsumptionapi
+  - Open browser and type this url http://localhost:8000/
+  
+ ## Stop flightfuelconsumptionapi docker container
+  - List the latest created container for that execute docker ps -l
+  - Copy its ID  
+  - Execute docker stop "ID"
